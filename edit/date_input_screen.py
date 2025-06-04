@@ -19,7 +19,7 @@ def create_title_frame(parent_frame, close_command, open_sub_screen):
     )
     label.grid(row=0, column=0, sticky="nsew")
 
-    script_dir = os.path.dirname(os.path.abspath(__file__))
+    script_dir = os.path.dirname(os.path.dirname(__file__))
     image_dir = "images"
     image_list = ["close_icon.png", "term_icon.png"]
 

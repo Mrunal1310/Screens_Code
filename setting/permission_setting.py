@@ -29,7 +29,7 @@ def create_title_frame(parent, title, close_command):
 
     # Load close icon
     try:
-        script_dir = os.path.dirname(os.path.abspath(__file__))
+        script_dir = os.path.dirname(os.path.dirname(__file__))
         image_path = os.path.join(script_dir, "images", "close_icon.png")
 
         close_image = ctk.CTkImage(dark_image=Image.open(image_path), size=(20, 20))

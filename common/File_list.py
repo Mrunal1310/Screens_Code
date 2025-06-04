@@ -9,6 +9,8 @@ class ImportExport(ctk.CTkFrame):
         self.configure(fg_color="white")
         self.go_home_callback = go_home_callback
         
+        self.base_dir = os.path.dirname(os.path.dirname(__file__))
+        
         self.columnconfigure(0, weight=3)
         self.columnconfigure(1, weight=1)
         self.rowconfigure((0), weight=0)
@@ -29,7 +31,7 @@ class ImportExport(ctk.CTkFrame):
         
         script_dir = os.path.dirname(os.path.abspath(__file__))  # Get the directory where the script is located
         image_dir="images\\"
-        image_path = os.path.join(image_dir, "multiple_choice_icon.png")
+        image_path = os.path.join(self.base_dir,'images', "multiple_choice_icon.png")
         
         try:
             image=ctk.CTkImage(dark_image=Image.open(image_path))
@@ -43,7 +45,7 @@ class ImportExport(ctk.CTkFrame):
         
         script_dir = os.path.dirname(os.path.abspath(__file__))  # Get the directory where the script is located
         image_dir="images\\"
-        image_path = os.path.join(image_dir, "close_icon.png")
+        image_path = os.path.join(self.base_dir,'images', "close_icon.png")
         
         try:
             image=ctk.CTkImage(dark_image=Image.open(image_path))

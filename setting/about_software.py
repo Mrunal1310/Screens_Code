@@ -36,8 +36,8 @@ def create_software_title_frame(parent, title, command):
     label.grid(row=0, column=0, pady=5, padx=10, sticky="new")
 
     try:
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        image_path = os.path.join(script_dir, "images", "close_icon.png")
+        base_dir = os.path.dirname(os.path.dirname(__file__))        
+        image_path = os.path.join(base_dir, "images", "close_icon.png")
         image = ctk.CTkImage(light_image=Image.open(image_path))
 
         close_button = ctk.CTkButton(frame, text="", image=image, command=command,

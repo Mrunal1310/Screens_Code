@@ -7,6 +7,8 @@ class BaseScreen(ctk.CTkFrame):
         super().__init__(parent)
         self.parent = parent
         self.pack(fill="both", expand=True)
+        
+        self.base_dir = os.path.dirname(os.path.dirname(__file__))
 
         # Configure grid
         self.columnconfigure(0, weight=1)
@@ -29,7 +31,7 @@ class BaseScreen(ctk.CTkFrame):
         self.title_label.grid(row=0, column=0, pady=5, padx=0, sticky="new")
 
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        image_path = os.path.join(script_dir, "images", "close_icon.png")
+        image_path = os.path.join(self.base_dir, "images", "close_icon.png")
 
         try:
             image = ctk.CTkImage(dark_image=Image.open(image_path))
@@ -52,7 +54,7 @@ class BaseScreen(ctk.CTkFrame):
 
     def create_buttons(self, button_labels):
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        image_dir = os.path.join(script_dir, "images")
+        image_dir = os.path.join(self.base_dir, "images")
 
         for index, (text, icon, command) in enumerate(button_labels):
             image_path = os.path.join(image_dir, icon)

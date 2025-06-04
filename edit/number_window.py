@@ -33,7 +33,7 @@ def create_title_frame(parent, command):
     )
     label.grid(row=0, column=0, sticky="new")
 
-    script_dir = os.path.dirname(os.path.abspath(__file__))
+    script_dir = os.path.dirname(os.path.dirname(__file__))
     image_dir = os.path.join(script_dir, "images")
 
     image_list = ["close_icon.png", "check_icon.png"]

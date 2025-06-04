@@ -31,7 +31,7 @@ def create_software_window(parent, base):
     frame1.columnconfigure(0, weight=1)
 
     # Load Close Button Image
-    script_dir = os.path.dirname(os.path.abspath(__file__))  # Script directory
+    script_dir = os.path.dirname(os.path.dirname(__file__))  # Script directory
     image_path = os.path.join(script_dir, "images", "close_icon.png")
     
     try:

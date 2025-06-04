@@ -28,7 +28,7 @@ def create_title_frame(parent, command):
                          anchor='center', text_color="white", font=("Arial", 20, 'bold'))
     label.grid(row=0, column=0, pady=5, padx=10, sticky="new")
 
-    script_dir = os.path.dirname(os.path.abspath(__file__))
+    script_dir = os.path.dirname(os.path.dirname(__file__))
     image_dir = os.path.join(script_dir, "images")
     image_list = ["close_icon.png", "check_icon.png"]
 

@@ -33,7 +33,7 @@ def create_title_frame(parent, command):
     )
     label.grid(row=0, column=0, sticky="new")
 
-    script_dir = os.path.dirname(os.path.abspath(__file__))
+    script_dir = os.path.dirname(os.path.dirname(__file__))
     image_dir = "images\\"
 
     image_list = ["close_icon.png", "check_icon.png"]
@@ -86,7 +86,7 @@ def create_button_frame(parent):
     create_buttons(parent, button_frame, image_files)  # Pass root, button_frame, and image_files
 
 def create_buttons(parent, button_frame, image_files):
-    script_dir = os.path.dirname(os.path.abspath(__file__))
+    script_dir = os.path.dirname(os.path.dirname(__file__))
     image_dir = "images\\"
 
     for index, image_name in enumerate(image_files):

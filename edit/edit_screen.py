@@ -15,6 +15,8 @@ class EditScreen(ctk.CTkFrame):
         self.open_sub_screen = open_sub_screen
         self.font_size = 10
         
+        self.base_dir = os.path.dirname(os.path.dirname(__file__))  # one level up
+        
         self.columnconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
         
@@ -32,7 +34,7 @@ class EditScreen(ctk.CTkFrame):
         self.date_time.grid(row=0, column=0, padx=10, sticky='e')
 
         try:
-            image_path = os.path.join(os.path.dirname(__file__), "images", "maximize_icon.png")
+            image_path = os.path.join(self.base_dir, "images", "maximize_icon.png")
             image = ctk.CTkImage(dark_image=Image.open(image_path))
             button = ctk.CTkButton(self.title_bar, text="Test file", anchor='w', image=image, command=lambda: self.parent.show_frame('inkjet_editor'),
                                    fg_color="#A83232", text_color="white", font=('Arial', 20))
@@ -60,7 +62,7 @@ class EditScreen(ctk.CTkFrame):
         
         for idx, (image_name, label, command) in enumerate(button_list):
             try:
-                image_path = os.path.join(os.path.dirname(__file__), "images", image_name)
+                image_path = os.path.join(self.base_dir, "images", image_name)
                 image = ctk.CTkImage(dark_image=Image.open(image_path), size=(25, 25))
                 button = ctk.CTkButton(self.widget_frame, text=label, image=image,
                                        hover_color="#A83232", text_color='black', command= command,
@@ -87,7 +89,7 @@ class EditScreen(ctk.CTkFrame):
 
         for idx, (img, label, command) in enumerate(buttons):
             try:
-                path = os.path.join(os.path.dirname(__file__), "images", img)
+                path = os.path.join(self.base_dir, "images", img)
                 image = ctk.CTkImage(dark_image=Image.open(path), size=(40, 40))
                 button = ctk.CTkButton(self.button_frame, text=label, image=image, command=command,
                                        compound="top", text_color='black', fg_color="#96ddf3", font=('Arial', 18))
@@ -104,7 +106,7 @@ class EditScreen(ctk.CTkFrame):
         self.canvas.grid(row=0, column=5, rowspan=2, pady=10, padx=15, sticky='nw')
 
         try:
-            path = os.path.join(os.path.dirname(__file__), "images", 'edit_button.png')
+            path = os.path.join(self.base_dir, "images", 'edit_button.png')
             self.tk_image = ImageTk.PhotoImage(Image.open(path))
             self.canvas.create_image(0, 0, image=self.tk_image, anchor="nw")
         except Exception as e:
@@ -120,7 +122,7 @@ class EditScreen(ctk.CTkFrame):
 
     def add_buttons_on_image(self, image_file, size, fg, pos, command):
         try:
-            image_path = os.path.join(os.path.dirname(__file__), "images", image_file)
+            image_path = os.path.join(self.base_dir, "images", image_file)
             image = ctk.CTkImage(dark_image=Image.open(image_path), size=size)
             button = ctk.CTkButton(self.canvas, text="", image=image,
                                    fg_color=fg, bg_color=fg, corner_radius=0,
@@ -161,7 +163,7 @@ class EditScreen(ctk.CTkFrame):
 
         for idx, (image_name, label, command) in enumerate(buttons):
             try:
-                path = os.path.join(os.path.dirname(__file__), "images", image_name)
+                path = os.path.join(self.base_dir, "images", image_name)
                 image = ctk.CTkImage(dark_image=Image.open(path), size=(50, 50))
                 button = ctk.CTkButton(self.side_frame, text=label, image=image, command=command,
                                        compound="top", text_color='black', fg_color="#96ddf3", font=('Arial', 18))

@@ -12,6 +12,8 @@ class CalendarWindow(ctk.CTkFrame):
         self.parent = parent
         self.configure(fg_color="white")
         self.pack(fill="both", expand=True)
+        
+        self.base_dir = os.path.dirname(os.path.dirname(__file__))
 
         # Configure grid
         self.columnconfigure(0, weight=1)
@@ -41,7 +43,7 @@ class CalendarWindow(ctk.CTkFrame):
 
         # Load close icon
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        image_path = os.path.join(script_dir, "images", "close_icon.png")
+        image_path = os.path.join(self.base_dir, "images", "close_icon.png")
 
         try:
             image = ctk.CTkImage(dark_image=Image.open(image_path))

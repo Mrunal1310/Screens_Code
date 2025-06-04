@@ -8,6 +8,7 @@ class InkjetEditor(ctk.CTkFrame):
         
         # self.configure(fg_color="white")
         self.go_home_callback = go_home_callback
+        self.base_dir = os.path.dirname(os.path.dirname(__file__))
 
         self.columnconfigure(0, weight=3)
         self.columnconfigure(1, weight=0)
@@ -33,8 +34,9 @@ class InkjetEditor(ctk.CTkFrame):
         self.button = ctk.CTkFrame(self, fg_color='white')
         self.button.grid(row=0, column=1, sticky='ns')
 
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        image_dir = os.path.join(script_dir, "images")
+        base_dir = os.path.dirname(os.path.dirname(__file__))
+        image_dir = os.path.join(base_dir, "images")
+        
 
         def load_image(filename, size):
             path = os.path.join(image_dir, filename)

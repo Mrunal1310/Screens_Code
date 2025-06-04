@@ -9,6 +9,8 @@ class ImportExport(ctk.CTkFrame):
         self.configure(fg_color="white")
         self.go_home_callback = go_home_callback
         
+        self.base_dir = os.path.dirname(os.path.dirname(__file__))
+        
         self.columnconfigure(0, weight=3)
         self.columnconfigure(1, weight=1)
         self.rowconfigure((0), weight=0)
@@ -27,9 +29,9 @@ class ImportExport(ctk.CTkFrame):
         self.label=ctk.CTkLabel(self.frame, text=title,  fg_color="#A83232", corner_radius=0, anchor='center',text_color="white",font=("Arial", 20, 'bold'))
         self.label.grid(row=0, column=0, pady=5, padx=0,)
         
-        script_dir = os.path.dirname(os.path.abspath(__file__))  # Get the directory where the script is located
-        image_dir="images\\"
-        image_path = os.path.join(image_dir, "multiple_choice_icon.png")
+        # script_dir = os.path.dirname(os.path.abspath(__file__))  # Get the directory where the script is located
+        # image_dir="images\\"
+        image_path = os.path.join(self.base_dir,'images', "multiple_choice_icon.png")
         
         try:
             image=ctk.CTkImage(dark_image=Image.open(image_path))
@@ -41,9 +43,9 @@ class ImportExport(ctk.CTkFrame):
         except Exception as e:
             print(f"An error occurred: {e}")
         
-        script_dir = os.path.dirname(os.path.abspath(__file__))  # Get the directory where the script is located
-        image_dir="images\\"
-        image_path = os.path.join(image_dir, "close_icon.png")
+        # script_dir = os.path.dirname(os.path.abspath(__file__))  # Get the directory where the script is located
+        # image_dir="images\\"
+        image_path = os.path.join(self.base_dir,'images', "close_icon.png")
         
         try:
             image=ctk.CTkImage(dark_image=Image.open(image_path))

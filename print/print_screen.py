@@ -15,6 +15,8 @@ class PrintScreen(ctk.CTkFrame):
         
         self.columnconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
+        
+        self.base_dir = os.path.dirname(os.path.dirname(__file__))
 
         self.title_frame()
         self.update_time()
@@ -44,9 +46,10 @@ class PrintScreen(ctk.CTkFrame):
         self.create_button('previous_icon.png', 'Previous', 90, "green", 1, 30)
         self.create_button('play_icon.png', 'Next', 90, "blue", 1, (150, 10))
         self.create_button('print_exit_icon.png', 'Exit', 170, "#FFC300", 2, (10, 10), command= self.go_home_callback)
-
+        
+        
     def create_button(self, image_name, text, height, fg_color, row, pady, command=None):
-        image_path = os.path.join("images", image_name)
+        image_path = os.path.join(self.base_dir, "images", image_name)
         try:
             image = ctk.CTkImage(dark_image=Image.open(image_path), size=(30, 30))
             button = ctk.CTkButton(self, text=text, image=image, compound='top', command=command,
@@ -85,7 +88,7 @@ class PrintScreen(ctk.CTkFrame):
         self.create_button_frame('print_printing_icon.png', (60, 60), 'Start printing', 290, 170, "#2AAA8A", (300, 0), (0, 0), 'nw')
 
     def create_button_frame(self, image_name, size, text, width, height, fg_color, padx, pady, sticky, command=None):
-        image_path = os.path.join("images", image_name)
+        image_path = os.path.join(self.base_dir, "images", image_name)
         try:
             image = ctk.CTkImage(dark_image=Image.open(image_path), size=size)
             button = ctk.CTkButton(self.frame, text=text, image=image, compound='top', command=command,
@@ -98,6 +101,6 @@ class PrintScreen(ctk.CTkFrame):
             print(f"An error occurred: {e}")
 
 
-if __name__ == "__main__":
-    app = App()
-    app.mainloop()
+# if __name__ == "__main__":
+#     app = App()
+#     app.mainloop()

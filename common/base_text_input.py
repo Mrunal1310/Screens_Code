@@ -9,6 +9,8 @@ class TextInput(ctk.CTkFrame):
         self.parent = parent
         self.pack(fill="both", expand=True)
         self.configure(fg_color='white')
+        
+        self.base_dir = os.path.dirname(os.path.dirname(__file__))
 
         self.is_caps = False
         self.buttons = {}
@@ -43,7 +45,7 @@ class TextInput(ctk.CTkFrame):
 
         for image_name in image_list:
             try:
-                image_path = os.path.join(script_dir, image_dir, image_name)
+                image_path = os.path.join(self.base_dir, image_dir, image_name)
                 image = ctk.CTkImage(dark_image=Image.open(image_path), size=(20, 20))
 
                 if image_name == "close_icon.png":
