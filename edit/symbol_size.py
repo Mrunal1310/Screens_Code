@@ -40,7 +40,7 @@ def create_title_frame(parent, command):
 
     for image_name in image_list:
         try:
-            image_path = os.path.join(image_dir, image_name)
+            image_path = os.path.join(script_dir,image_dir, image_name)
             image = ctk.CTkImage(dark_image=Image.open(image_path))
 
             if image_name == "close_icon.png":
