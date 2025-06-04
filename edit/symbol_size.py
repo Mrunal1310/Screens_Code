@@ -93,7 +93,7 @@ def create_buttons(parent, button_frame, image_files):
         row = index // 7
         col = index % 7
 
-        image_path = os.path.join(image_dir, image_name)
+        image_path = os.path.join(script_dir,image_dir, image_name)
 
         try:
             desired_width, desired_height = 120, 180
