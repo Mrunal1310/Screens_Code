@@ -2,8 +2,8 @@ import customtkinter as ctk
 from PIL import Image
 import os
 
-class FileScreen(ctk.CTkFrame):
-    def __init__(self, parent, go_home_callback):
+class ImportExport(ctk.CTkFrame):
+    def __init__(self, parent,title, button_list, go_home_callback):
         super().__init__(parent)
         
         self.configure(fg_color="white")
@@ -14,17 +14,17 @@ class FileScreen(ctk.CTkFrame):
         self.rowconfigure((0), weight=0)
         self.rowconfigure((1), weight=1)
         
-        self.title_frame()
+        self.title_frame(title)
         self.button_frame()
-        self.display_frame()
+        self.display_frame(button_list,)
         
-    def title_frame(self):
+    def title_frame(self, title):
         self.frame=ctk.CTkFrame(self, fg_color="#A83232", corner_radius=0)
         self.frame.columnconfigure(0, weight=1)
         self.frame.rowconfigure(0, weight=0)
         self.frame.grid(row=0, column=0, columnspan=2, sticky="new")
         
-        self.label=ctk.CTkLabel(self.frame, text="File list",  fg_color="#A83232", corner_radius=0, anchor='center',text_color="white",font=("Arial", 20, 'bold'))
+        self.label=ctk.CTkLabel(self.frame, text=title,  fg_color="#A83232", corner_radius=0, anchor='center',text_color="white",font=("Arial", 20, 'bold'))
         self.label.grid(row=0, column=0, pady=5, padx=0,)
         
         script_dir = os.path.dirname(os.path.abspath(__file__))  # Get the directory where the script is located
@@ -70,22 +70,41 @@ class FileScreen(ctk.CTkFrame):
                                     fg_color="white", hover_color="#FF00FF", font=("Arial", 20,), corner_radius=0)
             button.grid(row=index + 1, column=0, padx=10, pady=5, sticky="news")
         
-        
-    def display_frame(self):
-        
-        self.frame=ctk.CTkFrame(self, fg_color="white",corner_radius=0)
+    def display_frame(self, button_list,):
+        self.frame = ctk.CTkFrame(self, fg_color="white", corner_radius=0)
         self.frame.columnconfigure(0, weight=1)
-        self.frame.rowconfigure((0,1,), weight=1)
-        self.frame.grid(row=1, column=1, padx=5,pady=10, sticky="news")
+        self.frame.rowconfigure((0, 1), weight=1)
+        self.frame.grid(row=1, column=1, padx=5, pady=10, sticky="news")
+
+        self.entry = ctk.CTkEntry(
+            self.frame, placeholder_text="", height=40,
+            corner_radius=10, border_width=1, border_color="black"
+        )
+        self.entry.grid(row=0, column=0, padx=5, pady=(30, 0), sticky='ew')
+
+        # Loop through button_list to create buttons
+        for i, (btn_text) in enumerate(button_list):
+            button = ctk.CTkButton(
+                self.frame, text=btn_text, text_color="white", fg_color="#A83232",
+                font=("Arial", 22), corner_radius=0, command=self.open_warnings,
+            )
+            button.grid(row=1, column=0, padx=10, pady=(10 + i * 50), sticky="es")
+
+    # def display_frame(self, button_list, button_command):
         
-        self.entry=ctk.CTkEntry(self.frame, placeholder_text="",height=40, corner_radius=10, border_width=1, border_color="black", ) 
-        self.entry.grid(row=0, column=0,padx=5, pady=(30, 0), sticky='ew')
+    #     self.frame=ctk.CTkFrame(self, fg_color="white",corner_radius=0)
+    #     self.frame.columnconfigure(0, weight=1)
+    #     self.frame.rowconfigure((0,1,), weight=1)
+    #     self.frame.grid(row=1, column=1, padx=5,pady=10, sticky="news")
         
-        self.format_butn=ctk.CTkButton(self.frame, text="Delete", text_color="white",fg_color="#A83232",font=("Arial", 22,),corner_radius=0, command=self.open_warnings )
-        self.format_butn.grid(row=1, column=0, padx=10, pady=50, sticky="es")
+    #     self.entry=ctk.CTkEntry(self.frame, placeholder_text="",height=40, corner_radius=10, border_width=1, border_color="black", ) 
+    #     self.entry.grid(row=0, column=0,padx=5, pady=(30, 0), sticky='ew')
         
-        self.open_butn=ctk.CTkButton(self.frame, text="Open",  text_color="white",fg_color="#A83232", font=("Arial", 22,), corner_radius=0,)
-        self.open_butn.grid(row=1, column=0, padx=10,pady=10,sticky="es")
+    #     self.format_butn=ctk.CTkButton(self.frame, text="Delete", text_color="white",fg_color="#A83232",font=("Arial", 22,),corner_radius=0, command=self.open_warnings )
+    #     self.format_butn.grid(row=1, column=0, padx=10, pady=50, sticky="es")
+        
+    #     self.open_butn=ctk.CTkButton(self.frame, text="Open",  text_color="white",fg_color="#A83232", font=("Arial", 22,), corner_radius=0,)
+    #     self.open_butn.grid(row=1, column=0, padx=10,pady=10,sticky="es")
         
         self.label=ctk.CTkLabel(self.frame, text="", font=('Arial', 18), anchor='nw',text_color="black", height=150,fg_color="#C4E3ED")
         self.label.grid(row=0, column=0,padx=5, pady=5, sticky="new")
@@ -108,10 +127,10 @@ class FileScreen(ctk.CTkFrame):
         self.label=ctk.CTkLabel(self.frame, text="Warning",text_color="white", fg_color="#A83232",width=450, anchor="w",font=("Arial", 18, 'bold'))
         self.label.grid(row=0, column=0, sticky="news")
         
-        self.label=ctk.CTkLabel(self.frame, text="Test file",text_color="black", fg_color="white", anchor="w", font=("Arial", 16,))
+        self.label=ctk.CTkLabel(self.frame, text="Import and Export",text_color="black", fg_color="white", anchor="w", font=("Arial", 16,))
         self.label.grid(row=1, column=0, padx=10,pady=5,sticky="news")
         
-        self.label=ctk.CTkLabel(self.frame, text="\nDelete?",text_color="black", fg_color="white", anchor="w", font=("Arial", 16,))
+        self.label=ctk.CTkLabel(self.frame, text="Files",text_color="black", fg_color="white", anchor="w", font=("Arial", 16,))
         self.label.grid(row=2, column=0, padx=10,pady=0,sticky="news")
         
         self.button=ctk.CTkButton(self.frame, text="OK",text_color="black",anchor="center", fg_color="white",border_width=1,corner_radius=0,command=self.warning.destroy, font=("Arial", 16,))
