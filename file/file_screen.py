@@ -48,7 +48,7 @@ class FileScreen(ctk.CTkFrame):
         try:
             image=ctk.CTkImage(dark_image=Image.open(image_path))
             self.close_button=ctk.CTkButton(self.frame, text="", image=image, command=self.go_home_callback, hover=False, fg_color="#A83232",bg_color="#A83232",width=50, height=20, corner_radius=0)
-            self.close_button.grid(row=0, column=0, sticky='e')
+            self.close_button.grid(row=0, column=0,padx=(0, 50), sticky='e')
             image.close()
             
         except FileNotFoundError:

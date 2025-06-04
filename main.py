@@ -1,3 +1,4 @@
+# Import Python libraries
 import customtkinter as ctk
 from PIL import Image
 from datetime import datetime
@@ -22,7 +23,7 @@ from setting.permission_setting import create_permission_settings
 from edit.qr_code import create_qr_screen
 
 
-# Buttons & settings
+# Buttons present in print set and setting screen
 from print.print_set import create_printset_buttons, printing_direction, create_splicing_settings, nozzle_delay, create_font, font, create_table, table
 from setting.setting_screen import create_settings_buttons, time_setting, create_encoderspeedmeasurement_buttons, encoder_speed_measurement_screen, create_printer_buttons, printer, create_user_management_buttons,administrator_screen
 from common.date_screen import (create_roundtripprinting_buttons,create_dpi_buttons, 
@@ -33,7 +34,7 @@ from edit.date_input_screen import create_date_input_screen
 
 from edit.inkjet_editor import InkjetEditor
 
-
+# Main loop of Screen 
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
@@ -218,6 +219,7 @@ class App(ctk.CTk):
     def show_inkjet_editor(self):
         self.show_frame('inkjet_editor')
 
+# Home Screen code 
 class HomeScreen(ctk.CTkFrame):
     def __init__(self, parent):
         super().__init__(parent)
@@ -274,7 +276,7 @@ class HomeScreen(ctk.CTkFrame):
             )
             btn.grid(row=1, column=1, padx=padx or 0, sticky="w" if i == 0 else "e" if text == "Setting" else "")
 
-
+# Main function loop
 if __name__ == "__main__":
     app = App()
     app.mainloop()

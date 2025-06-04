@@ -36,7 +36,7 @@ class ImportExport(ctk.CTkFrame):
         try:
             image=ctk.CTkImage(dark_image=Image.open(image_path))
             self.multiple_button=ctk.CTkButton(self.frame, text="Multiple Choice", image=image, fg_color="#A83232", corner_radius=0, anchor='w',text_color="white",font=("Arial", 20, 'bold'))
-            self.multiple_button.grid(row=0, column=0, pady=5, padx=5, sticky="w")
+            self.multiple_button.grid(row=0, column=0, pady=5, padx=(0, 50), sticky="w")
             image.close()
         except FileNotFoundError:
             print(f"Error: Image not found at {image_path}")
